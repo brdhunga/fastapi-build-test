@@ -25,7 +25,9 @@ jobs:
         sudo mv ~/doctl /usr/local/bin
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        doctl registry login --access-token "${{ secrets.REGISTRY_TOKEN }}"
+        docker build . --file Dockerfile --tag registry.digitalocean.com/dasam-docker-img/test
+        docker push registry.digitalocean.com/dasam-docker-img/test
         echo $(date)
         echo $MY_NAME
         echo $(which doctl)
