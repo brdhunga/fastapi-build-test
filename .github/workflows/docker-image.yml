@@ -17,11 +17,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install doctl 
+      run: |
+        cd ~
+        wget https://github.com/digitalocean/doctl/releases/download/v1.65.0/doctl-1.65.0-linux-amd64.tar.gz
+        tar xf ~/doctl-1.65.0-linux-amd64.tar.gz
+        sudo mv ~/doctl /usr/local/bin
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         echo $(date)
         echo $MY_NAME
+        echo $(which doctl)
     - name: Add the private SSH key to the ssh-agent
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
