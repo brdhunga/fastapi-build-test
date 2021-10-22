@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+    
+env:
+    MY_NAME: Available for all jobs in this workflow
 
 jobs:
 
@@ -18,3 +21,4 @@ jobs:
       run: |
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
         echo $(date)
+        echo $MY_NAME
