@@ -47,5 +47,5 @@ jobs:
         ssh -o StrictHostKeyChecking=no dude@${{ secrets.VPS }} << 'ENDSSH'
           cd ~/app
           docker pull registry.digitalocean.com/dasam-docker-img/test
-          docker-compose up
+          docker-compose -f docker-compose.prod.yml up
         ENDSSH

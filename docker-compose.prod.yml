@@ -3,7 +3,6 @@ version: "3.9"
 services:
   web:
     image: registry.digitalocean.com/dasam-docker-img/test
-    volumes:
-      - .:/app
+    working_dir: /app
     network_mode: 'host'
-    command: "uvicorn app:app --reload --port 8010"
+    command: "uvicorn app:app --port 8010"
