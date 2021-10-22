@@ -5,4 +5,4 @@ services:
     image: registry.digitalocean.com/dasam-docker-img/test
     working_dir: /app
     network_mode: 'host'
-    command: "uvicorn app:app --port 8010"
+    command: "uvicorn app:app --port 8010 --host dasam.io"
