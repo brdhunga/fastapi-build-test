@@ -4,8 +4,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  MY_NAME: ${{MY_NAME}}
 
 jobs:
 
@@ -16,5 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
+      env:
+        MY_NAME: ${{MY_NAME}}
     - run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - run: echo I am echoing $MY_NAME
